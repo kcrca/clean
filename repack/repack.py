@@ -35,9 +35,9 @@ def normpath(path):
 
 
 core = normpath('core')
-clarity = normpath('clarity')
-continuity = normpath('continuity')
-connectivity = normpath('connectivity')
+clean = normpath('clean')
+continuous = normpath('continuous')
+confluent = normpath('confluent')
 
 
 class Change(object):
@@ -230,10 +230,10 @@ def save(dst_img, dst):
     dst_img.save(dst)
 
 
-class ConnectedTextureChange(Change):
+class ConfluentTextureChange(Change):
     """
-    A change that builds the connected texture data for the block. This uses a set of named templates, and the config
-    file lists which template to use for any given file. Unlisted files are not connected.
+    A change that builds the confluent texture data for the block. This uses a set of named templates, and the config
+    file lists which template to use for any given file. Unlisted files are not confluent.
     """
     mask_cache = {}
 
@@ -265,7 +265,7 @@ class ConnectedTextureChange(Change):
 
     def apply(self, src, dst, subpath):
         CopyChange().apply(src, dst, subpath)
-        super(ConnectedTextureChange, self).apply(src, dst, subpath)
+        super(ConfluentTextureChange, self).apply(src, dst, subpath)
 
     def do_change(self, dst, src_img):
         ctm_top_dir = os.path.join(self.ctm_pass.dst_assets_dir, 'optifine', 'ctm')
@@ -279,7 +279,7 @@ class ConnectedTextureChange(Change):
             shutil.copytree(override_path, ctm_dir)
             return
 
-        def connected_images(src_path, dst_path):
+        def confluent_images(src_path, dst_path):
             self._mask_block(src_path, dst_path, src_img, edgeless_img)
 
         edgeless_img = self.edgeless_image(base)
@@ -288,7 +288,7 @@ class ConnectedTextureChange(Change):
         src_img = deanimate(src_img)
         edgeless_img = deanimate(edgeless_img)
 
-        shutil.copytree(self.template_dir, ctm_dir, ignore=only_png, copy_function=connected_images)
+        shutil.copytree(self.template_dir, ctm_dir, ignore=only_png, copy_function=confluent_images)
 
         template_prop_file = os.path.join(self.template_dir, 'block.properties')
         with open(template_prop_file) as t:
@@ -317,7 +317,7 @@ class ConnectedTextureChange(Change):
         # (looked at overriding __deepcopy__(memo) but it seemed more complicated, not less
         ctm_pass = self.ctm_pass
         self.ctm_pass = None
-        m = super(ConnectedTextureChange, self).modified(label, opt_str)
+        m = super(ConfluentTextureChange, self).modified(label, opt_str)
         self.ctm_pass = ctm_pass
         m.ctm_pass = ctm_pass
         return m
@@ -328,12 +328,12 @@ class ConnectedTextureChange(Change):
         # block_img.show()
         key = (mask, block_img.size[0], self.edge_width)
         try:
-            mask_img, edger = ConnectedTextureChange.mask_cache[key]
+            mask_img, edger = ConfluentTextureChange.mask_cache[key]
         except KeyError:
             mask_img = Image.open(mask).convert('RGBA')
             # mask_img.show()
             mask_img, edger = self.rescale_mask(mask_img, block_img.size)
-            ConnectedTextureChange.mask_cache[key] = (mask_img, edger)
+            ConfluentTextureChange.mask_cache[key] = (mask_img, edger)
 
         dst_img = edgeless_img.copy()
         dst_img.paste(block_img, mask_img)
@@ -378,11 +378,11 @@ class ConnectedTextureChange(Change):
 
         There are the following possible cases:
 
-        (*) The corner is "on" in the mask and connected along both x and y axes. In this case, the edge on the image is
+        (*) The corner is "on" in the mask and confluent along both x and y axes. In this case, the edge on the image is
             already correct, so do nothing.
         (*) The corner is not "on" in the mask. This also means that no line runs to the corner. In this case, fill the
             corner of the image with the nearest color from the center.
-        (*) The corner is "on" in the mask, and is connected to along one axis. In this case, smear the end of the edge
+        (*) The corner is "on" in the mask, and is confluent to along one axis. In this case, smear the end of the edge
             closest along that axis through the corner, extending the edge along that axis out to the edge of the image.
         (*) The corner is "on" in the mask, but no line runs to it. In this case, the corner will be attached to edges
             from adjacent blocks, and the corner "turns the corner" with that edge.
@@ -623,7 +623,7 @@ class Pass(object):
     def changes(self, src, dst):
         """
         Runs the change(s) for a given src and dst file. This is looked up in multiple ways. For a dst of
-            'clarity/assets/minecraft/textures/block/lime_stained_glass.png'
+            'clean/assets/minecraft/textures/block/lime_stained_glass.png'
         we search the following in order, stopping with the first match
             'assets/minecraft/textures/block/lime_stained_glass.png'
             'textures/block/lime_stained_glass.png'
@@ -661,32 +661,32 @@ class Pass(object):
             change.apply(src, dst, subpath)
 
 
-class ContinuityPass(Pass):
+class ContinuousPass(Pass):
     """
-    The pass for the Continuity pack. This remembers the CTM pass so it can tell it about files it processes, which
+    The pass for the Continuous pack. This remembers the CTM pass so it can tell it about files it processes, which
     sets up the CTM pass for its work.
     """
 
     def __init__(self, ctm_pass):
-        super(ContinuityPass, self).__init__(core, continuity)
-        self.connectivity_pass = ctm_pass
+        super(ContinuousPass, self).__init__(core, continuous)
+        self.confluent_pass = ctm_pass
 
 
-class ConnectivityPass(Pass):
+class ConfluentPass(Pass):
     """
-    The pass for the Connectivity (CTM) pass. Each connectivity texture requires both edged and edgeless blocks. The
-    edgless blocks are taken from the previously-generated Continuity pack.
+    The pass for the Confluent (CTM) pass. Each confluent texture requires both edged and edgeless blocks. The
+    edgless blocks are taken from the previously-generated Continuous pack.
     """
 
     def __init__(self):
-        super(ConnectivityPass, self).__init__(core, connectivity)
-        self.edgeless_top = normpath('continuity')  # use the generated edgeless images
-        self.edgeless_block_dir = self.src_block_dir.replace(core, continuity)
+        super(ConfluentPass, self).__init__(core, confluent)
+        self.edgeless_top = normpath('continuous')  # use the generated edgeless images
+        self.edgeless_block_dir = self.src_block_dir.replace(core, continuous)
         self.block_subpath = self.dst_block_dir[len(self.dst_top) + 1:]
         self.template_top = os.path.join(self.repack_dir, 'ctm_templates')
 
     def find_change(self, change_name):
-        return ConnectedTextureChange(change_name, self)
+        return ConfluentTextureChange(change_name, self)
 
 
 def only_png(_, files):
@@ -694,10 +694,10 @@ def only_png(_, files):
 
 
 # Build the pass objects.
-clarity_pass = Pass(core, clarity)
-continuity_pass = Pass(core, continuity)
-connectivity_pass = ConnectivityPass()
-passes = (clarity_pass, continuity_pass, connectivity_pass)
+clean_pass = Pass(core, clean)
+continuous_pass = Pass(core, continuous)
+confluent_pass = ConfluentPass()
+passes = (clean_pass, continuous_pass, confluent_pass)
 
 passes[0].default_change = CopyChange()
 

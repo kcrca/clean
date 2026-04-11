@@ -1,6 +1,6 @@
 {
   "pack": {
-    "description": "Clarity's internal core source",
+    "description": "Clean's internal core source",
     "min_format": 84,
     "max_format": 84
   }

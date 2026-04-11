@@ -1,7 +1,7 @@
-ctm needs to know the top of the repacked (finished) continuity, as a source of edgeless images.
+ctm needs to know the top of the repacked (finished) continuous, as a source of edgeless images.
 
-The list of ctm'ed blocks should be the same (unless overridden somehow?) as continuity,
-so it needs continuity's repack.cfg
+The list of ctm'ed blocks should be the same (unless overridden somehow?) as continuous,
+so it needs continuous's repack.cfg
 
 Each ctm change needs
     png file name (from which to get edged and edgeless images, and resolution)

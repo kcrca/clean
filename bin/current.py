@@ -27,7 +27,7 @@ os.makedirs(current_models)
 os.makedirs(current_textures)
 
 pack = json.load(open('core/pack.mcmeta'))
-pack['pack']['description'] = "Clarity texture showing power levels."
+pack['pack']['description'] = "Clean texture showing power levels."
 dump('current/pack.mcmeta', pack)
 
 c_blockstates = directory('blockstates')

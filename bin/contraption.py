@@ -104,7 +104,7 @@ def main():
     os.makedirs(models_dir)
 
     pack = json.load(open('core/pack.mcmeta'))
-    pack['pack']['description'] = "Clarity pack to make redstone mechanisms clearer."
+    pack['pack']['description'] = "Clean pack to make redstone mechanisms clearer."
     clip.dump('contraption/pack.mcmeta', pack)
 
     # Read in all the models

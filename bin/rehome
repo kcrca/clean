@@ -1,7 +1,7 @@
 #!/bin/zsh
 set -e
 
-cd ~/clarity
+cd ~/clean
 
 src=$PWD
 dst=~/MultiMC/instances/$1/.minecraft

@@ -7,7 +7,7 @@ import sys
 import clip
 
 # This script is a partial attempt at doing two things: First, it finds files that have rotational variants for
-# aesthetic reasons. This screws up all sorts of things for Clarity, especially with connected textures. This job
+# aesthetic reasons. This screws up all sorts of things for Clean, especially with confluent textures. This job
 # it does well.
 #
 # It also tries to build a simplified variant. That it doesn't do that so well, because some of them need some special

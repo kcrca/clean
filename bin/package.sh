@@ -25,7 +25,7 @@ until [[ $v:r == $v ]]; do
 done
 
 # Removed 'changes' because minecraft time seems to no longer run long enough to see it
-dirs=(contraption clarity connectivity continuity current call_out call_out_all beguile)
+dirs=(contraption clean confluent continuous current call_out call_out_all beguile)
 
 # Create the packs dir
 test -d $packs || mkdir -p $packs
@@ -67,8 +67,8 @@ to_title() {
 license() {
     name=$1
     ucname=$2
-    (echo "<p>${ucname}: Part of the Clarity Resource Pack Family for Minecraft.<br>" && cat License.html) >! $name/License.html
-    (echo "${ucname}: Part of the Clarity Resource Pack Family for Minecraft." && cat License.txt) >! $name/License.txt
+    (echo "<p>${ucname}: Part of the Clean Resource Pack Family for Minecraft.<br>" && cat License.html) >! $name/License.html
+    (echo "${ucname}: Part of the Clean Resource Pack Family for Minecraft." && cat License.txt) >! $name/License.txt
 }
 
 # This function will build a single zip file
@@ -106,7 +106,7 @@ do_create() {
     name=$1
     shift
     mkdir -p $name
-    tar c -C clarity "$@" | tar xf - -C $name
+    tar c -C clean "$@" | tar xf - -C $name
     # Trivial implementation of repack for this case
     tar c -C $name.repack/override . | tar xf - -C $name
     find $name \( -name '*.ai' -o -name '*.px?' -o -name '*.psd' -o -name '*.py*' -o -name '*README*' \) -print0 | xargs -0 rm
@@ -158,10 +158,10 @@ for name in "${dirs[@]}"; do
     )
 done
 
-echo Building "ClarityFamily_$version.zip"
+echo Building "CleanFamily_$version.zip"
 (
     cd $packs
-    zip -q "ClarityFamily_$version.zip" *${version}.zip
+    zip -q "CleanFamily_$version.zip" *${version}.zip
 )
 
 echo Building site
