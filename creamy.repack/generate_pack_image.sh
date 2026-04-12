@@ -18,10 +18,8 @@ circle_text() {
     -background 'rgb(237,231,184)' \
     -font "$font" \
     -pointsize "$psize" \
-    label:"cyclicycli" \
+    label:"creamy" \
     -trim +repage \
-    -bordercolor 'rgb(237,231,184)' \
-    -border $(( psize * 0.05 ))x$(( psize * 0.1 )) \
     -virtual-pixel Background \
     -distort Arc "360 143 $radius" \
     -define distort:viewport="${v_size}x${v_size}-${v_center}-${v_center}" \

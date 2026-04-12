@@ -31,7 +31,7 @@ def shelf_texture(i):
 textures = clip.directory('textures', 'block')
 models = clip.directory('models', 'block')
 books_png = os.path.join('bin', 'bookshelves.png')
-cyclic = clip.directory('top', 'cyclic.repack', 'override', 'assets', 'minecraft', 'textures', 'block')
+creamy = clip.directory('top', 'creamy.repack', 'override', 'assets', 'minecraft', 'textures', 'block')
 books_img = Image.open(books_png)
 books_pixel = books_img.load()
 
@@ -96,8 +96,8 @@ def bookshelf_for_pack(start, width, dir, prefix=''):
 # Do the clean (bordered) shelves.
 bookshelf_for_pack(1, 14, textures, 'bookshelf')
 
-# Do the cyclic (unbordered) shelves.
-bookshelf_for_pack(0, 16, cyclic, 'bookshelf')
+# Do the creamy (unbordered) shelves.
+bookshelf_for_pack(0, 16, creamy, 'bookshelf')
 
 dirs = ('north', 'east', 'west', 'south')
 shelf_nums = list(range(0, NUM_BLOCKS))
