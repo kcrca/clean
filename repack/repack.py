@@ -36,7 +36,7 @@ def normpath(path):
 
 core = normpath('core')
 clean = normpath('clean')
-continuous = normpath('continuous')
+cyclic = normpath('cyclic')
 confluent = normpath('confluent')
 
 
@@ -452,13 +452,13 @@ class ConfluentTextureChange(Change):
                 for x in range(0, y + 1):
                     dst_img.putpixel((cx + x * x_dir, cy + y * y_dir), c)
         elif on_x:
-            # continuous along X, so stretch a Y-oriented bar along X
+            # cyclic along X, so stretch a Y-oriented bar along X
             box = to_box([cx + x_step, cy, cx + x_step + x_dir, cy + y_step])
             bar = dst_img.crop(box)
             for x in range(0, w * x_dir, x_dir):
                 dst_img.paste(bar, (cx + x, box[1]))
         else:
-            # continuous along Y, so stretch a X-oriented bar along Y
+            # cyclic along Y, so stretch a X-oriented bar along Y
             assert on_y
             box = to_box([cx, cy + y_step, cx + x_step, cy + y_step + y_dir])
             bar = dst_img.crop(box)
@@ -661,27 +661,27 @@ class Pass(object):
             change.apply(src, dst, subpath)
 
 
-class ContinuousPass(Pass):
+class CyclicPass(Pass):
     """
-    The pass for the Continuous pack. This remembers the CTM pass so it can tell it about files it processes, which
+    The pass for the Cyclic pack. This remembers the CTM pass so it can tell it about files it processes, which
     sets up the CTM pass for its work.
     """
 
     def __init__(self, ctm_pass):
-        super(ContinuousPass, self).__init__(core, continuous)
+        super(CyclicPass, self).__init__(core, cyclic)
         self.confluent_pass = ctm_pass
 
 
 class ConfluentPass(Pass):
     """
     The pass for the Confluent (CTM) pass. Each confluent texture requires both edged and edgeless blocks. The
-    edgless blocks are taken from the previously-generated Continuous pack.
+    edgless blocks are taken from the previously-generated Cyclic pack.
     """
 
     def __init__(self):
         super(ConfluentPass, self).__init__(core, confluent)
-        self.edgeless_top = normpath('continuous')  # use the generated edgeless images
-        self.edgeless_block_dir = self.src_block_dir.replace(core, continuous)
+        self.edgeless_top = normpath('cyclic')  # use the generated edgeless images
+        self.edgeless_block_dir = self.src_block_dir.replace(core, cyclic)
         self.block_subpath = self.dst_block_dir[len(self.dst_top) + 1:]
         self.template_top = os.path.join(self.repack_dir, 'ctm_templates')
 
@@ -695,9 +695,9 @@ def only_png(_, files):
 
 # Build the pass objects.
 clean_pass = Pass(core, clean)
-continuous_pass = Pass(core, continuous)
+cyclic_pass = Pass(core, cyclic)
 confluent_pass = ConfluentPass()
-passes = (clean_pass, continuous_pass, confluent_pass)
+passes = (clean_pass, cyclic_pass, confluent_pass)
 
 passes[0].default_change = CopyChange()
 

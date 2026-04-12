@@ -25,7 +25,7 @@ until [[ $v:r == $v ]]; do
 done
 
 # Removed 'changes' because minecraft time seems to no longer run long enough to see it
-dirs=(contraption clean confluent continuous current call_out call_out_all beguile)
+dirs=(contraption clean confluent cyclic current call_out call_out_all beguile)
 
 # Create the packs dir
 test -d $packs || mkdir -p $packs
