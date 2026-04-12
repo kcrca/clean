@@ -28,4 +28,4 @@ circle_text() {
 
 
 circle_text 512 pack.png
-circle_text 64 pack_thumb.png
+magick override/pack.png -resize 64x64 override/pack_thumb.png
