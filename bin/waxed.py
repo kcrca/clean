@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
+from pathlib import Path
+
 import configparser
 import glob
 import os
 import re
-from pathlib import Path
-
+import shutil
 from PIL import Image
 
 import clip
@@ -122,8 +123,18 @@ for model in models:
 with open(f'/tmp/{int(True)}', 'w') as fp:
     print('\n'.join(sorted(textures)), file=fp)
 
+
+def wax_it(img, overlay, out_file):
+    orig_mode = img.mode
+    img = img.convert('RGBA')
+    clip.alpha_composite(img, overlay, (0, 0))
+    img = img.convert(orig_mode)
+    img.save(out_file)
+
+
 for texture in textures:
-    texture = texture.replace('/', '/waxed_')
+    if texture[0] != '/':
+        texture = texture.replace('/', '/waxed_')
     overlay = default_overlay
     override = blocks_dir.parent / f'{re.sub(r"(exposed|weathered|oxidized)_", "", texture)}_overlay.png'
     out_file = textures_dir / f'{texture}.png'
@@ -135,8 +146,20 @@ for texture in textures:
     except FileNotFoundError as e:
         print(f'Warning: skipping {texture}.png')
         continue
-    orig_mode = img.mode
-    img = img.convert('RGBA')
-    clip.alpha_composite(img, overlay, (0, 0))
-    img = img.convert(orig_mode)
-    img.save(out_file)
+    wax_it(img, overlay, out_file)
+
+# There are specialized connected textures for the copper grates
+for dir in glob.glob(clip.directory('top') + '/confluent.repack/override/assets/minecraft/optifine/ctm/*copper*'):
+    if 'waxed' in dir:
+        continue
+    waxed = Path(dir.replace('ctm/', 'ctm/waxed_'))
+    dir = Path(dir)
+    base = dir.stem
+    shutil.rmtree(waxed)
+    shutil.copytree(dir, waxed)
+    with open(waxed / f'{base}.properties') as inp:
+        with open(waxed / f'waxed_{base}.properties', 'w') as outp:
+            outp.write(inp.read().replace(base, f'waxed_{base}'))
+    os.remove(waxed / f'{base}.properties')
+    for f in glob.glob(str(dir / '*.png')):
+        wax_it(Image.open(f), default_overlay, waxed / Path(f).name)

@@ -117,19 +117,37 @@ def dump(path, src):
 
 
 # This composites an image onto another merging the alpha properly. This should be part of PIL, but I can't find it.
-# (This differs from Image.alpha_composite by working on a specific subimage.)
-# From http://stackoverflow.com/questions/3374878/with-the-python-imaging
-# -library-pil-how-does-one-compose-an-image-with-an-alp
-def alpha_composite(output, image, pos, rotation=0):
+# (This differs from Image.alpha_composite by working on a specific subimage and handling rotation.)
+from PIL import Image
+
+
+def alpha_composite(output, image, pos=(0, 0), rotation=0):
+    """
+    Blends an image onto an output respecting alpha.
+    Maintains original rotation logic while fixing transparency artifacts.
+    """
     if rotation:
         size = image.size
         image = image.rotate(rotation, expand=1).resize(size, Image.Resampling.LANCZOS)
-    # output.paste(Image.alpha_composite(output, image), output)
-    r, g, b, a = image.split()
-    rgb = Image.merge("RGB", (r, g, b))
-    mask = Image.merge("L", (a,))
-    output.paste(rgb, pos, mask)
 
+    if image.mode != 'RGBA':
+        image = image.convert('RGBA')
+
+    # 3. Blending Logic: Fixes 'visible pixels' in zero-alpha areas
+    if output.mode == 'RGBA':
+        # Create a buffer canvas to align 'image' at 'pos'
+        canvas = Image.new('RGBA', output.size, (0, 0, 0, 0))
+        canvas.paste(image, pos)
+
+        # True Porter-Duff 'Over' composite
+        # Out = Src + Dst * (1 - Src_Alpha)
+        res = Image.alpha_composite(output, canvas)
+        output.paste(res)
+    else:
+        # Output is RGB (or other): Use the alpha channel as a mask
+        # This is the 'flattening' method that respects original mode
+        mask = image.split()[3]
+        output.paste(image, pos, mask)
 
 def has_transparency(img):
     if img.info.get("transparency", None) is not None:
