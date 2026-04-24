@@ -1,0 +1,97 @@
+pack: clean
+name: Clean
+version: '26.1'
+minecraft: '26.1'
+resolution: 16
+progress: 100
+icon: ../clean/pack.png
+zip: ../site/packs/Clean.26.1.zip
+summary: "A calm, clear resource pack for Minecraft 26.1"
+home_url: "https://cleanpack.art"
+license: CC-BY-4.0
+
+clean_specific: >
+  Clean gives you a low-noise, easy to use vision of the world, with block boundaries clearly defined so
+  it is easy to build things.
+creamy_specific: >
+  Creamy gives you a low-noise, smooth vision of the world, with few block boundaries, keeping an ultra-low-noise
+  environment with fewer interruptions.
+confluent_specific: >
+  Confluent is 
+
+curseforge:
+  id: 677003
+  slug: clean-pack
+  additionalCategories:
+    animated: 0
+    dataPacks: 0
+    fontPacks: 0
+    medieval: 0
+    modSupport: 0
+    modern: true
+    photoRealistic: 0
+    traditional: 0
+    miscellaneous: true
+
+modrinth:
+  id: BuxkkSXI
+  slug: clean-pack
+  tags:
+    audio: 0
+    blocks: true
+    combat: 0
+    core-shaders: 0
+    cursed: 0
+    decoration: true
+    entities: true
+    environment: true
+    equipment: true
+    fonts: 0
+    gui: true
+    items: true
+    locale: 0
+    modded: 0
+    models: 0
+    realistic: 0
+    simplistic: true
+    themed: 0
+    tweaks: 0
+    utility: 0
+    vanilla-like: true
+
+planetminecraft:
+  id: 4679442
+  slug: clarity-a-calm-clear-way-to-play
+  category: Simplistic
+  credit: ''
+  modifies:
+    armor: true
+    art: true
+    environment: true
+    font: 0
+    gui: true
+    items: true
+    misc: true
+    mobs: true
+    particles: true
+    terrain: true
+    audio: 0
+    models: true
+  tags:
+  - environment
+  - terrain
+  - items
+  - gui
+  - art
+  - mobs
+  - armor
+  - misc
+  - particles
+  - weapons
+  - pack
+  - simplistic
+  - modern
+  - optifine
+  - blocks
+  - models
+  - complete
