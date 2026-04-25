@@ -1,0 +1,4 @@
+pack_specific: 'Confluent is the connected texture pack version of [Clean]({{projects.clean.url}})'
+other_packs: '{{clean_desc}} and {{creamy_desc}}'
+name: Confluent
+pack: confluent

@@ -1,5 +1,7 @@
-pack: clean
-name: Clean
+projects:
+  - clean
+  - creamy
+  - confluent
 version: '26.1'
 minecraft: '26.1'
 resolution: 16
@@ -10,14 +12,13 @@ summary: "A calm, clear resource pack for Minecraft 26.1"
 home_url: "https://cleanpack.art"
 license: CC-BY-4.0
 
-clean_specific: >
-  Clean gives you a low-noise, easy to use vision of the world, with block boundaries clearly defined so
-  it is easy to build things.
-creamy_specific: >
-  Creamy gives you a low-noise, smooth vision of the world, with few block boundaries, keeping an ultra-low-noise
-  environment with fewer interruptions.
-confluent_specific: >
-  Confluent is 
+clean_desc: "[Clean]({{projects.clean.url}}), with borders on blocks for orderly building"
+creamy_desc: "[Creamy]({{projects.creamy.url}}), which eliminates the block borders for landscape blocks"
+confluent_desc: "[Confluent]({{projects.confluent.url}}), the connected textures version of Clean"
+
+linked_projects:
+  restworld:
+    slug: restworld
 
 curseforge:
   id: 677003

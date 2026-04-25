@@ -1,0 +1,5 @@
+pack_specific: 'Clean gives you a low-noise, easy to use vision of the world, with
+  block boundaries clearly defined so it is easy to build things'
+other_packs: '{{creamy_desc}} and {{confluent_desc}}'
+name: Clean
+pack: clean
