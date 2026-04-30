@@ -1,3 +1,6 @@
+source: '{{top}}/site'
+
+images:
 - name: Overview
   description: A general overview of the pack
   file: overview
@@ -21,6 +24,5 @@
   description: Noteblocks are clear about the note they play!
   file: noteblock
 - name: Terracotta
-  description: Glazed Terracotta is faithfully rendered at high resolution for low
-    noise.
-  file: terracotta
+  description: Glazed Terracotta is faithfully rendered at high resolution for low noise.
+  file: terra

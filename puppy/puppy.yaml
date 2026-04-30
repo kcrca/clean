@@ -57,6 +57,7 @@ modrinth:
     utility: 0
     vanilla-like: true
 planetminecraft:
+  after_push: 'Update alt download link to https://cleanpack.art/packs/{{name}}.{{version}}.zip'
   category: Simplistic
   credit: ''
   modifies:

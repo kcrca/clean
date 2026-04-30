@@ -1,4 +1,4 @@
-source: '{{top}}/site'
+source: '{{top}}/site/confluent'
 
 images:
 - name: Overview
@@ -25,4 +25,4 @@ images:
   file: noteblock
 - name: Terracotta
   description: Glazed Terracotta is faithfully rendered at high resolution for low noise.
-  file: terracotta
+  file: terra
