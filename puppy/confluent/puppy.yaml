@@ -4,44 +4,12 @@ icon: '{{top}}/confluent/pack.png'
 zip: '{{top}}/site/packs/Confluent.26.1.zip'
 pack_specific: Confluent is the connected texture pack version of [Clean]({{projects.clean.url}})
 other_packs: '{{clean_desc}} and {{creamy_desc}}'
+summary: '{{pack_specific}}'
+
+modrinth:
+  id: 3KqYI1dW
+  slug: confluentpack
 planetminecraft:
   id: 6919424
   slug: confluent
-  category: Simplistic
-  resolution: '16'
-  progress: 100
-  credit: ''
-  modifies:
-    armor: true
-    art: true
-    environment: true
-    font: 0
-    gui: true
-    items: true
-    misc: true
-    mobs: true
-    particles: true
-    terrain: true
-    audio: 0
-    models: true
-  tags:
-  - environment
-  - terrain
-  - items
-  - gui
-  - art
-  - mobs
-  - armor
-  - misc
-  - particles
-  - weapons
-  - pack
-  - simplistic
-  - modern
-  - 16x16
-  - 16x
-  - optifine
-  - blocks
-  - models
-  - complete
-version: 1.0.0
+summary: This is like clean, but for connected texture packs.

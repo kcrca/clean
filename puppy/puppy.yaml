@@ -6,9 +6,10 @@ version: '26.1'
 minecraft: '26.1'
 resolution: 16
 progress: 100
-summary: "A calm, clear resource pack for Minecraft 26.1"
+summary: "A calm, clear texture pack for Minecraft 26.1"
 links:
   home: "https://cleanpack.art"
+  source: "https://github.com/kcrca/clean"
 license: CC-BY-4.0
 
 clean_desc: "[Clean]({{projects.clean.url}}), with borders on blocks for orderly building"
@@ -40,8 +41,8 @@ modrinth:
     combat: 0
     core-shaders: 0
     cursed: 0
-    decoration: true
-    entities: true
+    decoration: 0
+    entities: 0
     environment: true
     equipment: true
     fonts: 0
