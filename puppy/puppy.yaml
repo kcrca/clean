@@ -6,10 +6,9 @@ version: '26.1'
 minecraft: '26.1'
 resolution: 16
 progress: 100
-icon: ../clean/pack.png
-zip: ../site/packs/Clean.26.1.zip
 summary: "A calm, clear resource pack for Minecraft 26.1"
-home_url: "https://cleanpack.art"
+links:
+  home: "https://cleanpack.art"
 license: CC-BY-4.0
 
 clean_desc: "[Clean]({{projects.clean.url}}), with borders on blocks for orderly building"
@@ -18,11 +17,12 @@ confluent_desc: "[Confluent]({{projects.confluent.url}}), the connected textures
 
 linked_projects:
   restworld:
+    type: world
     slug: restworld
+    planetminecraft:
+      slug: restworld-a-complete-resourcepack-testing-world-for-1-15-2
 
 curseforge:
-  id: 677003
-  slug: clean-pack
   additionalCategories:
     animated: 0
     dataPacks: 0
@@ -33,10 +33,7 @@ curseforge:
     photoRealistic: 0
     traditional: 0
     miscellaneous: true
-
 modrinth:
-  id: BuxkkSXI
-  slug: clean-pack
   tags:
     audio: 0
     blocks: true
@@ -59,10 +56,7 @@ modrinth:
     tweaks: 0
     utility: 0
     vanilla-like: true
-
 planetminecraft:
-  id: 4679442
-  slug: clarity-a-calm-clear-way-to-play
   category: Simplistic
   credit: ''
   modifies:

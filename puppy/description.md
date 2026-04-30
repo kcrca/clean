@@ -20,15 +20,15 @@ The design guidelines are:
 ![grass block design](https://cleanpack.art/grass_design.png)
 
 The pack is quite complete, all blocks, mobs, items, GUI, paintings, effects... Almost all are 16x16, but a
-few are larger where it reduced noise a lot (for example, curved rail). Some particles (such as lava sparks)
-are left untouched on purpose. (And versions going back to 1.16 are available.)
+few are larger where it reduced noise a lot (such as curved rail). Some particles (such as lava sparks)
+are left untouched on purpose. (And versions going back to Minecraft 1.16 are available.)
 
 {{name}} is a resource pack built on making the world less noisy. The
 textures are designed to be clear and simple. It is easy to see
 what things are, visual noise is reduced, and clutter is taken away.
 When this Is used across a landscape ... _so much less noise!_
 
-![Comparison of the several variants of Clarity with vanilla.]({{home_url}}/comparison.gif)
+![Comparison of the several variants of Clarity with vanilla.]({{links.home}}/comparison.gif)
 
 As shown here,
 {{name}} is part of the Clean family of resource packs. The main other packs are: {{other_packs}}.
@@ -40,11 +40,11 @@ to look similarly good in {{name}}.
 This is a very complete pack. Pretty much everything has been
 smoothed, cleaned up, and reworked.
 
-The Clean family [has its own web site]({{home_url}}), so
-come on over and [check it out!]({{home_url}})
+The Clean family [has its own web site]({{links.home}}), so
+come on over and [check it out!]({{links.home}})
 
 One way to check it out is via my RestWorld resource pack test
-world, which is also on [this site]({{projects.restworld.url}}) and [on my own site]({{home_url}}/restworld/index.html). Check
+world, which is also on [this site]({{projects.restworld.url}}) and [on my own site]({{links.home}}/restworld/index.html). Check
 it out!
 
 (Note to the detail geeks: This is only 99% 16x; I have prioritized

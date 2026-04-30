@@ -1,5 +1,48 @@
-pack_specific: 'Creamy gives you a low-noise, smooth vision of the world, with few
-  block boundaries, keeping an ultra-low-noise environment with fewer interruptions'
-other_packs: '{{clean_desc}} and {{confluent_desc}}'
 name: Creamy
 pack: creamy
+icon: '{{top}}/creamy/pack.png'
+zip: '{{top}}/site/packs/Creamy.26.1.zip'
+pack_specific: Creamy gives you a low-noise, smooth vision of the world, with few
+  block boundaries, keeping an ultra-low-noise environment with fewer interruptions
+other_packs: '{{clean_desc}} and {{confluent_desc}}'
+planetminecraft:
+  id: 6911690
+  slug: creamy-6911690
+  category: Simplistic
+  resolution: '16'
+  progress: 100
+  credit: ''
+  modifies:
+    armor: true
+    art: true
+    environment: true
+    font: 0
+    gui: true
+    items: true
+    misc: true
+    mobs: true
+    particles: true
+    terrain: true
+    audio: 0
+    models: true
+  tags:
+  - environment
+  - terrain
+  - items
+  - gui
+  - art
+  - mobs
+  - armor
+  - misc
+  - particles
+  - weapons
+  - pack
+  - simplistic
+  - modern
+  - 16x16
+  - 16x
+  - optifine
+  - blocks
+  - models
+  - complete
+version: 1.0.0
