@@ -55,14 +55,14 @@ class Change(object):
         self.do_change(dst, src_img)
 
     def do_change(self, dst, src_img):
-        """Orveride to do the actual work."""
+        """Override to do the actual work."""
         pass
 
     def name(self):
         return self.__class__.__name__.replace('Change', '')
 
     def set_options(self, label, opt_str):
-        """Overide to add options for a specific kind of change."""
+        """Override to add options for a specific kind of change."""
         if opt_str:
             raise SyntaxError('%s: No options allowed' % self.name())
 
@@ -73,7 +73,7 @@ class Change(object):
 
 
 class CopyChange(Change):
-    """A change that is a simply copy, that is, that actually doesn't change anything."""
+    """A change that is a simple copy, that is, that actually doesn't change anything."""
 
     def apply(self, src, dst, subpath):
         if not do_not_copy_re.search(dst):
@@ -83,7 +83,7 @@ class CopyChange(Change):
 class SimpleChange(Change):
     """
     Base class for simple changes that only modify the image. This class takes care of reading and writing the
-    image, so the sublclass can just do the image work.
+    image, so the subclass can just do the image work.
     """
 
     def do_change(self, dst, src_img):
@@ -102,7 +102,7 @@ class SimpleChange(Change):
 
 class EraseEdgeChange(SimpleChange):
     """
-    A simple change that overwrites the outer border with the pixles that are just inside it.
+    A simple change that overwrites the outer border with the pixels that are just inside it.
     """
 
     def __init__(self, dup_size=None):
@@ -203,7 +203,7 @@ change_by_name = {
 
 
 def to_box(coords):
-    """Canonicalize a set of coords to ensure the are upper left corner to lower right."""
+    """Canonicalize a set of coords to ensure they are upper left corner to lower right."""
     if coords[0] > coords[2]:
         coords[0], coords[2] = coords[2], coords[0]
     if coords[1] > coords[3]:
@@ -313,7 +313,7 @@ class ConfluentTextureChange(Change):
         return Image.open(edgeless).convert('RGBA')
 
     def modified(self, label, opt_str):
-        # Must remove ctm_pass before deep copy or we copy too much -- it is the one thing we don't want to deep copy
+        # Must remove ctm_pass before deep copy, or we copy too much -- it is the one thing we don't want to deep copy
         # (looked at overriding __deepcopy__(memo) but it seemed more complicated, not less
         ctm_pass = self.ctm_pass
         self.ctm_pass = None
@@ -458,7 +458,7 @@ class ConfluentTextureChange(Change):
             for x in range(0, w * x_dir, x_dir):
                 dst_img.paste(bar, (cx + x, box[1]))
         else:
-            # creamy along Y, so stretch a X-oriented bar along Y
+            # creamy along Y, so stretch an X-oriented bar along Y
             assert on_y
             box = to_box([cx, cy + y_step, cx + x_step, cy + y_step + y_dir])
             bar = dst_img.crop(box)
@@ -480,7 +480,7 @@ def safe_mkdirs(dst_dir):
 
 
 def _target_re(target):
-    """If the target is an regexp, returns the compiled pattern with a '.png' added, otherwise returns None."""
+    """If the target is a regexp, returns the compiled pattern with a '.png' added, otherwise returns None."""
     # TODO: Is this really needed? A pattern with no special chars still matches what it should.
     if re_re.search(target):
         return re.compile(r'%s\.png' % target)
@@ -505,11 +505,12 @@ class Pass(object):
         self.src_block_dir = self.dst_block_dir.replace(self.dst_top, self.src_top)
         self.changes_for = {}
         self.re_changes = []
+        self.unused_changes = None
 
     def parse_config(self, config):
         """
         Parses the 'changes' section in the config file. This reads file as a key, followed by a set of target (path)\
-        and option) specifications whose change is defined by that key.
+        and option specifications whose change is defined by that key.
         """
         try:
             for change_name, targets in config.items('changes'):
@@ -582,9 +583,9 @@ class Pass(object):
 
     def run(self):
         """
-        Run this pass. This recurisively descends the source resourcepack, deciding what to do with each individual
+        Run this pass. This recursively descends the source resourcepack, deciding what to do with each individual
         entity.  Each iteration in the loop goes through the files in a single directory, deciding what to do with
-        each and whether or not to descend into a given subdirectory. For each file in the dir, it execute the
+        each and whether to descend into a given subdirectory. For each file in the dir, it executes the
         appropriate changes during the copy.
         """
         print("=== %s" % self.dst_top)
@@ -603,7 +604,7 @@ class Pass(object):
             subdirs_to_skip = [d for d in subdir_list if skip_dirs_re.match(d)]
             for d in subdirs_to_skip:
                 subdir_list.remove(d)
-            print('-- %s' % (dst_dir))
+            print('-- %s' % dst_dir)
             safe_mkdirs(dst_dir)
             file_list = [f for f in file_list if not do_not_copy_re.search(f)]
             for f in file_list:
@@ -630,9 +631,9 @@ class Pass(object):
             'lime_stained_glass.png'
         If nothing is found, we use the default change.
 
-        For input we use the files from the source unless there is a specific override under the 'overrides' directory.
+        For input, we use the files from the source unless there is a specific override under the 'overrides' directory.
         """
-        dst, subpath = self.subpath_for(dst)  # the path from "assests/minecraft" on down.
+        dst, subpath = self.subpath_for(dst)  # the path from "assets/minecraft" on down.
         changes = self._find_changes(subpath)
         if not changes and dst[:self.dst_assets_dir_len] == self.dst_assets_dir:
             # If the full path for the dst doesn't give us changes, try path from below "assets/minecraft".
@@ -675,7 +676,7 @@ class CreamyPass(Pass):
 class ConfluentPass(Pass):
     """
     The pass for the Confluent (CTM) pass. Each confluent texture requires both edged and edgeless blocks. The
-    edgless blocks are taken from the previously-generated Creamy pack.
+    edgeless blocks are taken from the previously-generated Creamy pack.
     """
 
     def __init__(self):
