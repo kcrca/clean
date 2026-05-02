@@ -678,5 +678,15 @@ block/green_bed_head_west.png
 block/magenta_bed_head_west.png
 block/red_bed_head_west.png
 block/lime_bed_head_west.png
+block/sulfur_spikes_down_base.png
+block/sulfur_spikes_down_frustum.png
+block/sulfur_spikes_down_middle.png
+block/sulfur_spikes_down_tip.png
+block/sulfur_spikes_down_tip_merge.png
+block/sulfur_spikes_up_base.png
+block/sulfur_spikes_up_frustum.png
+block/sulfur_spikes_up_middle.png
+block/sulfur_spikes_up_tip.png
+block/sulfur_spikes_up_tip_merge.png
 
 (The files are in git to help the script know which files should exist)
