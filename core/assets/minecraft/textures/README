@@ -688,5 +688,6 @@ block/sulfur_spike_up_frustum.png
 block/sulfur_spike_up_middle.png
 block/sulfur_spike_up_tip.png
 block/sulfur_spike_up_tip_merge.png
+item/sulfur_spike.png
 
 (The files are in git to help the script know which files should exist)
