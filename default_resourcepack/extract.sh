@@ -7,6 +7,7 @@ cd ~/clean/default_resourcepack
 for f in $places; do
     loc="$f/$1/minecraft-$1-client.jar"
     if [ -f "$loc" ]; then
+	echo $loc >/dev/tty
 	rm -rf [a-df-z]*
 	unzip -qq "$loc" -x '*.class' META-INF/'*'
 	rm -f pack.*
