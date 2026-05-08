@@ -7,6 +7,9 @@ pack_specific: Creamy gives you a low-noise, smooth vision of the world, with fe
 other_packs: '{{clean_desc}} and {{confluent_desc}}'
 summary: '{{pack_specific}}'
 
+curseforge:
+  id: 1536822
+  slug: creamy
 modrinth:
   id: STJVog4j
   slug: creamypack
