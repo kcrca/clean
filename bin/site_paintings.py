@@ -6,7 +6,7 @@ from pathlib import Path
 from PIL import Image
 
 import clip
-from pynecraft.values import paintings
+from pynecraft.info import paintings
 
 src = Path(clip.directory('textures', 'painting'))
 dst = Path(clip.directory('site', 'painting'))
