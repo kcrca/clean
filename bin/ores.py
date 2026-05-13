@@ -36,8 +36,8 @@ for f in glob.glob('*_ore.png'):
 
     out_img = Image.new('RGBA', src_img.size)
     out_img.putdata(out_dat)
-    out_img.save('deepslate_%s.png' % ore_name, optimize=True)
+    out_img.save(f'deepslate_{ore_name}.png', optimize=True)
 
     top_img = Image.new('RGBA', src_img.size)
     top_img.putdata(top_dat)
-    top_img.save('deepslate_%s_top.png' % ore_name, optimize=True)
+    top_img.save(f'deepslate_{ore_name}_top.png', optimize=True)

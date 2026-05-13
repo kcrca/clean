@@ -55,9 +55,9 @@ blocks_dir = Path(clip.directory('textures', 'block'))
 simple_items_re = re.compile('|'.join(basic.get('simple_items').split()))
 
 # Clean out existing blockstates and models for waxed stuff.
-for file in (glob.glob(clip.directory('blockstates') + "/waxed_*") +
-             glob.glob(clip.directory('items') + "/waxed_*") +
-             glob.glob(clip.directory('models') + "/*/waxed_*")):
+for file in (glob.glob(clip.directory('blockstates') + '/waxed_*') +
+             glob.glob(clip.directory('items') + '/waxed_*') +
+             glob.glob(clip.directory('models') + '/*/waxed_*')):
     os.remove(file)
 
 
@@ -95,7 +95,7 @@ def remember(store, out_str):
 # Look through the blockstates, creating new ones and new items/ entries also
 simple_items = set()
 models = set(basic.get('add_models').split())
-for block_state in glob.glob(clip.directory('defaults', 'blockstates') + "/waxed_*"):
+for block_state in glob.glob(clip.directory('defaults', 'blockstates') + '/waxed_*'):
     base_name = re.search(r'(\w+)\.json', block_state).group(1)
     if ignore_re.match(block_state):
         continue
@@ -136,7 +136,7 @@ for texture in textures:
     if texture[0] != '/':
         texture = texture.replace('/', '/waxed_')
     overlay = default_overlay
-    override = blocks_dir.parent / f'{re.sub(r"(exposed|weathered|oxidized)_", "", texture)}_overlay.png'
+    override = blocks_dir.parent / f'{re.sub(r'(exposed|weathered|oxidized)_', '', texture)}_overlay.png'
     out_file = textures_dir / f'{texture}.png'
     in_file = str(out_file).replace('/waxed_', '/')
     if override.exists():

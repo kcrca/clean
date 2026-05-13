@@ -2,12 +2,13 @@
 
 # Generates a report comparing two packs.
 
+from pathlib import Path
+
 import configparser
 import glob
 import re
 import subprocess
 import sys
-from pathlib import Path
 
 import clip
 from clip import *
@@ -91,10 +92,10 @@ def orphans():
     # First we pull in all the models for the blocks, using the blockstates and items files as the roots of the tree.
     # We overwrite any info from the default models with our own.
     for root, base in root_names.items():
-        for file in glob.glob('%s/*.json' % clip.directory('defaults', root)):
+        for file in glob.glob(f'{clip.directory('defaults', root)}/*.json'):
             path = f'{base}/{os.path.basename(file)}'
             source_files[path] = file
-        for file in glob.glob('%s/*.json' % clip.directory(root)):
+        for file in glob.glob(f'{clip.directory(root)}/*.json'):
             path = f'{base}/{os.path.basename(file)}'
             source_files[path] = file
     # Now load the files
@@ -102,7 +103,7 @@ def orphans():
         with open(source_files[path]) as fp:
             roots[path] = json.load(fp)
     # Find all of our own models, and store them as possibly unused
-    for file in glob.glob('%s/**/*.json' % clip.directory('models'), recursive=True):
+    for file in glob.glob(f'{clip.directory('models')}/**/*.json', recursive=True):
         m = subpath_re.search(file)
         model_name = m.group(1)
         unused_models[model_name] = True
@@ -120,15 +121,14 @@ def orphans():
     textures = set()
     unused_textures = set()
     # bookshelf images are only _probably_ used, so this allows for the case where one isn't
-    for file in glob.glob('%s/item/*.png' % clip.directory('textures')) + glob.glob(
-            '%s/block/*.png' % clip.directory('textures')):
+    for file in glob.glob(f'{clip.directory('textures')}/item/*.png') + glob.glob(
+            f'{clip.directory('textures')}/block/*.png'):
         texture_name = subpath_re.search(file).group(1)
         if not Path(file + '.split').exists():
             unused_textures.add(texture_name)
     for model_name in models:
         model = models[model_name]
         for texture_name in find_textures(model):
-            # print '%s: %s' % (model_name, texture_name)
             textures.add(texture_name)
             try:
                 unused_textures.remove(texture_name)
@@ -205,7 +205,7 @@ class FileStatus(object):
         if len(self.multi_matches) > 0:
             print('  MULTIPLE pattern matches for path:')
             for p in sorted(self.multi_matches):
-                print('    %s: %s' % (p, ', '.join(self.multi_matches[p])))
+                print(f'    {p}: {', '.join(self.multi_matches[p])}')
 
     def add_path(self, groups, path):
         """
@@ -339,8 +339,8 @@ unused_checker = FileStatus('Unused', '')
 os.chdir(directory('minecraft'))
 
 models, textures = orphans()
-print('Models: %s' % len(models))
-print('Textures: %d' % len(textures))
+print(f'Models: {len(models)}')
+print(f'Textures: {len(textures):d}')
 unused_checker.dump()
 
 other = config.get('basic', 'top')

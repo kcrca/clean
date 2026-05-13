@@ -15,7 +15,7 @@ __author__ = 'arnold'
 NUM_BLOCKS = 20
 
 if len(sys.argv) == 1:
-    print("Not regenerating without an argument")
+    print('Not regenerating without an argument')
     sys.exit(0)
 
 
@@ -25,7 +25,7 @@ def remove_all(pat):
 
 
 def shelf_texture(i):
-    return 'bookshelf_%02d' % i
+    return f'bookshelf_{i:02d}'
 
 
 textures = clip.directory('textures', 'block')
@@ -83,14 +83,14 @@ def create_shelf(start, width, avoid, avail):
 
 def bookshelf_for_pack(start, width, dir, prefix=''):
     os.makedirs(dir, exist_ok=True)
-    remove_all(os.path.join(dir, '%s_[0-9]*.png' % prefix))
+    remove_all(os.path.join(dir, f'{prefix}_[0-9]*.png'))
     avoid = []
     shelves = []
     avail = list(books)
     for i in range(0, NUM_BLOCKS):
         shelf = create_shelf(start, width, avoid, avail)
         shelves.append(shelf)
-        shelf.save(os.path.join(dir, '%s_%02d.png' % (prefix, i)), optimize=True)
+        shelf.save(os.path.join(dir, f'{prefix}_{i:02d}.png'), optimize=True)
 
 
 # Do the clean (bordered) shelves.
@@ -119,7 +119,7 @@ for i in range(0, NUM_BLOCKS):
     model_name = shelf_texture(i)
     with open(os.path.join(models, model_name) + '.json', 'w') as f:
         json.dump(model, f, indent=2, sort_keys=True)
-    blockstate['variants'][''].append({'model': 'block/%s' % model_name})
+    blockstate['variants'][''].append({'model': f'block/{model_name}'})
 
 with open(os.path.join(clip.directory('blockstates'), 'bookshelf.json'), 'w') as f:
     json.dump(blockstate, f, indent=2, sort_keys=True)

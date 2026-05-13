@@ -20,16 +20,16 @@ grid_re = re.compile(r'(\d+)(?:x(\d+))?')
 
 def open_part(part):
     try:
-        return Image.open('parts/%s' % part).convert("RGBA")
+        return Image.open(f'parts/{part}').convert('RGBA')
     except FileNotFoundError:
-        return Image.open(mc_dir / ('parts/%s' % part)).convert("RGBA")
+        return Image.open(mc_dir / (f'parts/{part}')).convert('RGBA')
 
 
 used_part_files = []
 mc_dir = Path(clip.directory('textures', 'gui', 'container'))
-slot = Image.open(mc_dir / 'parts/slot.png').convert("RGBA")
+slot = Image.open(mc_dir / 'parts/slot.png').convert('RGBA')
 for dir in glob.glob(str(mc_dir).replace('minecraft', '*')):
-    print('%s:' % dir)
+    print(f'{dir}:')
     os.chdir(dir)
     if not Path('panels.cfg').exists():
         print('    Skipping')
@@ -68,7 +68,7 @@ for dir in glob.glob(str(mc_dir).replace('minecraft', '*')):
 
     for panels_desc, part_str in panels:
         for panel in panels_desc.split(','):
-            output_path = '%s.png' % panel
+            output_path = f'{panel}.png'
             if re.match(r'^\.\./', output_path):
                 print('    ' + output_path)
             # We remove any leading "../"s to make it possible to rework a file above
@@ -92,12 +92,12 @@ for dir in glob.glob(str(mc_dir).replace('minecraft', '*')):
 
             parts = part_str.split()
 
-            print("    Generating %s" % panel)
+            print(f'    Generating {panel}')
 
             for desc in parts:
                 m = desc_re.match(desc)
                 if not m:
-                    print('%s: cannot parse desc: %s' % (panel, desc))
+                    print(f'{panel}: cannot parse desc: {desc}')
                     continue
                 part, x_pos_str, y_pos_str, rotation_str, relative = m.groups()
 
@@ -141,8 +141,8 @@ for dir in glob.glob(str(mc_dir).replace('minecraft', '*')):
                             y = y_pos + slot_height + 1
                             draw.bitmap((x, y), digits[i], fill=font_color)
                         used_part_files.append('digits.png')
-                    elif part.startswith("item/"):
-                        part_img = Image.open('../../%s.png' % part).convert("RGBA")
+                    elif part.startswith('item/'):
+                        part_img = Image.open(f'../../{part}.png').convert('RGBA')
                         pixels = part_img.load()
                         for x in range(0, part_img.size[0]):
                             for y in range(0, part_img.size[1]):
@@ -166,4 +166,4 @@ parts_files = [x for x in os.listdir(mc_dir / 'parts') if x[-4:] == '.png']
 unused = set(parts_files) - set(used_part_files) - set('slot.png')
 
 if len(unused) > 0:
-    print("unused parts: %s" % ', '.join(unused))
+    print(f'unused parts: {', '.join(unused)}')

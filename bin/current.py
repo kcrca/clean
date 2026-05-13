@@ -27,7 +27,7 @@ os.makedirs(current_models)
 os.makedirs(current_textures)
 
 pack = json.load(open('core/pack.mcmeta'))
-pack['pack']['description'] = "Clean texture showing power levels."
+pack['pack']['description'] = 'Clean texture showing power levels.'
 dump('current/pack.mcmeta', pack)
 
 c_blockstates = directory('blockstates')
@@ -46,8 +46,8 @@ for i in range(0, 16):
             if pixels[x, y] == (213, 53, 53, 255):
                 pixels[x, y] = (93, 0, 0, 255)
     full_digit.paste(digit_img, (0, 16))
-    full_digit.save('%s/current_%02d.png' % (current_textures, i), optimize=True)
-    dump('%s/current_%02d.png.mcmeta' % (current_textures, i), {'animation': {'interpolate': True, 'frametime': 60}})
+    full_digit.save(f'{current_textures}/current_{i:02d}.png', optimize=True)
+    dump(f'{current_textures}/current_{i:02d}.png.mcmeta', {'animation': {'interpolate': True, 'frametime': 60}})
 
 current_cfg = config.items('default')
 for model, args in current_cfg:
@@ -60,7 +60,7 @@ for model, args in current_cfg:
     scaled_w = scale * w
     scaled_h = scale * h_off
     blocks = values[1:]
-    parent_model = '%s/current_%s.json' % (current_models, model)
+    parent_model = f'{current_models}/current_{model}.json'
     face = {
         'uv': [0, 0, w, h_off],
         'texture': '#current'
@@ -88,19 +88,17 @@ for model, args in current_cfg:
                         ]
                         })
     for i in range(1, 16):
-        dump('%s/current_%s_%02d.json' % (current_models, model, i),
-             {'parent': 'block/current_%s' % model, 'textures':
-                 {'current': 'block/current_%02d' % i}
-              })
+        dump(f'{current_models}/current_{model}_{i:02d}.json',
+             {'parent': f'block/current_{model}', 'textures': {'current': f'block/current_{i:02d}'}})
     for block in blocks:
         state = None
         for d in c_blockstates, d_blockstates:
-            json_path = '%s/%s.json' % (d, block)
+            json_path = f'{d}/{block}.json'
             if os.path.exists(json_path):
                 state = json.load(open(json_path))
                 break
         if not state:
-            print('Cannot find blockstate for %s' % block)
+            print(f'Cannot find blockstate for {block}')
             sys.exit(1)
 
         try:
@@ -118,5 +116,5 @@ for model, args in current_cfg:
                     clauses.append({name: value})
                 multipart.append({'when': {'AND': clauses}, 'apply': v})
         for i in range(1, 16):
-            multipart.append({'when': {'power': i}, 'apply': {'model': 'block/current_%s_%02d' % (model, i)}})
-        dump('%s/%s.json' % (current_states, block), state)
+            multipart.append({'when': {'power': i}, 'apply': {'model': f'block/current_{model}_{i:02d}'}})
+        dump(f'{current_states}/{block}.json', state)

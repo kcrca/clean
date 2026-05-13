@@ -120,20 +120,20 @@ for i in range(-1, ticks + 1):
     mins = total_minutes % 60
 
     name = 'fixed_%0*d' % (tick_digit_cnt, i % ticks) if i >= 0 else 'clock_unk'
-    texture = 'item/clock/%s' % name
+    texture = f'item/clock/{name}'
     png_path = texture + '.png'
-    model = 'item/clock/%s' % name
+    model = f'item/clock/{name}'
     json_path = model + '.json'
     if i >= 0:
         at_time_frac = day_frac
         if i > 0:
             at_time_frac -= half_tick_fraction
         fixed_overrides.append({
-            "model": {
-                "type": "minecraft:model",
-                "model": f"minecraft:item/clock/fixed_{i % ticks:03d}"
+            'model': {
+                'type': 'minecraft:model',
+                'model': f'minecraft:item/clock/fixed_{i % ticks:03d}'
             },
-            "threshold": at_time_frac
+            'threshold': at_time_frac
         })
     if i < ticks:
         # no need to write the image when i >= ticks since we already have
@@ -142,16 +142,16 @@ for i in range(-1, ticks + 1):
             write_digits(tick_img, '??', digit_pos[0], False)
             write_digits(tick_img, '??', digit_pos[2], True)
         else:
-            write_digits(tick_img, '%02d' % hrs, digit_pos[0], False)
-            write_digits(tick_img, '%02d' % mins, digit_pos[2], True)
-        tick_img.save('textures/%s' % png_path, optimize=True)
+            write_digits(tick_img, f'{hrs:02d}', digit_pos[0], False)
+            write_digits(tick_img, f'{mins:02d}', digit_pos[2], True)
+        tick_img.save(f'textures/{png_path}', optimize=True)
 
-    path = 'models/%s' % json_path
+    path = f'models/{json_path}'
     with open(path, 'w') as f:
         json.dump({
-            "parent": out_parent,
-            "textures": {
-                "layer0": texture
+            'parent': out_parent,
+            'textures': {
+                'layer0': texture
             }
         }, f, indent=4, sort_keys=True)
 
@@ -184,23 +184,23 @@ for f in glob.glob(f'{texture_dir}/*.png'):
         dst.save(f.replace('fixed_', 'clock_'))
 
 fixed_display = {
-    "model": {
-        "type": "minecraft:select",
-        "property": "minecraft:context_dimension",
-        "cases": [{
-            "model": {
-                "type": "minecraft:range_dispatch",
-                "entries": fixed_overrides,
-                "property": "minecraft:time",
-                "scale": 1.0,
-                "source": "daytime",
-                "wobble": False,
+    'model': {
+        'type': 'minecraft:select',
+        'property': 'minecraft:context_dimension',
+        'cases': [{
+            'model': {
+                'type': 'minecraft:range_dispatch',
+                'entries': fixed_overrides,
+                'property': 'minecraft:time',
+                'scale': 1.0,
+                'source': 'daytime',
+                'wobble': False,
             },
-            "when": "minecraft:overworld"
+            'when': 'minecraft:overworld'
         }],
-        "fallback": {
-            "model": "item/clock/clock_unk",
-            "type": "model",
+        'fallback': {
+            'model': 'item/clock/clock_unk',
+            'type': 'model',
         },
     }
 }
@@ -208,14 +208,14 @@ clock_display = copy.deepcopy(fixed_display['model']['cases'][0]['model'])
 for e in clock_display['entries']:
     e['model']['model'] = e['model']['model'].replace('fixed_', 'clock_')
 model = {
-    "model": {
-        "type": "minecraft:select",
-        "property": "minecraft:display_context",
-        "cases": [{
-            "when": "fixed",
-            "model": fixed_display['model']
+    'model': {
+        'type': 'minecraft:select',
+        'property': 'minecraft:display_context',
+        'cases': [{
+            'when': 'fixed',
+            'model': fixed_display['model']
         }],
-        "fallback": clock_display
+        'fallback': clock_display
     }
 }
 with open('items/clock.json', 'w') as f:

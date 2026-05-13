@@ -6,7 +6,6 @@ import os
 import re
 import shutil
 import sys
-
 from PIL import Image
 
 import clip
@@ -83,8 +82,7 @@ def map_for(map_name, key_color, has_alpha):
         colors_config = color_config[map_name][color_name]
         lst = color_list(colors_config, has_alpha)
         if len(lst) != num_colors:
-            print(('Mismatch: %s: %s: expected %d colors, found %d' % (
-                map_name, color_name, num_colors, len(lst))))
+            print((f'Mismatch: {map_name}: {color_name}: expected {num_colors:d} colors, found {len(lst):d}'))
         else:
             m = {}
             for i in range(num_colors):
@@ -114,7 +112,7 @@ def list_colors(color_name, file_name, exclude_colors):
         for y in range(img.size[1]):
             r, g, b = data[x, y]
             colors.add((r, g, b))
-    sys.stdout.write('%-13s' % (color_name + ':'))
+    sys.stdout.write(f'{color_name + ":":<13}')
     for c in sorted(colors, key=lambda x: sum(x), reverse=True):
         if c not in exclude_colors:
             # noinspection PyStringFormat
@@ -185,9 +183,9 @@ def list_image_colors(files):
         for x in range(src_img.size[0]):
             for y in range(src_img.size[1]):
                 colors.add(src_data[x, y])
-        print('%s:' % f)
+        print(f'{f}:')
         for c in sorted(colors):
-            print('  %s' % str(c))
+            print(f'  {str(c)}')
 
 
 def color_for(cell):
@@ -233,14 +231,14 @@ def build_name_fixes(fix_specs):
 
 def parse_colors():
     color_dir = clip.directory('config', 'colorize')
-    for color_file in glob.glob('%s/*.png' % color_dir):
+    for color_file in glob.glob(f'{color_dir}/*.png'):
         img = Image.open(color_file)
         rows = find_rows(img)
         with open(color_file.replace('.png', '.txt')) as fp:
             name_lines = fp.read()
         names = name_lines.split('\n')[:-1]
         if len(names) != len(rows):
-            raise Exception('%s: %d Names found for %d rows' % (color_file, len(names), len(rows)))
+            raise Exception(f'{color_file}: {len(names):d} Names found for {len(rows):d} rows')
         cols = find_cols(img)
         data = img.load()
 
@@ -321,7 +319,7 @@ def main(argv=None):
         # The key file is always required, so remove any options
         key_color, key_file = file_from_color(file_opt_re.sub('', file_pat), key_color, coloring)
         if verbose:
-            print('%s: reading %s' % (coloring, key_file))
+            print(f'{coloring}: reading {key_file}')
         src_img = Image.open(key_file)
         if src_img.mode == 'P':
             src_img = src_img.convert('RGB')
@@ -337,7 +335,7 @@ def main(argv=None):
             if dst_file == '':
                 continue
             if verbose:
-                print(('    %s' % dst_file))
+                print((f'    {dst_file}'))
             mode = 'RGB'
             if has_alpha:
                 mode = 'RGBA'
@@ -352,7 +350,7 @@ def main(argv=None):
                         pass
                     dst_data[x, y] = data
             dst_img.save(dst_file, 'png', optimize=True)
-            warnf.write('%s\n' % dst_file)
+            warnf.write(f'{dst_file}\n')
     warnf.write('\n')
     warnf.write('(The files are in git to help the script know which files should exist)\n')
     warnf.close()

@@ -16,9 +16,9 @@ import clip
 if len(sys.argv) == 1:
     sys.exit(0)
 
-allow = tuple('%s.json' % x for x in ('sea_pickle', 'turtle_egg', 'lily_pad'))
+allow = tuple(f'{x}.json' for x in ('sea_pickle', 'turtle_egg', 'lily_pad'))
 new_states = {}
-for file in glob.glob('%s/*.json' % clip.directory('defaults', 'blockstates')):
+for file in glob.glob(f'{clip.directory('defaults', 'blockstates')}/*.json'):
     if os.path.basename(file) in allow:
         continue
     old_bs = json.load(open(file))
@@ -45,4 +45,4 @@ for file in glob.glob('%s/*.json' % clip.directory('defaults', 'blockstates')):
 
 blockstates = clip.directory('blockstates')
 for k in new_states:
-    json.dump(new_states[k], open('%s/%s' % (blockstates, k), 'w'), indent=2)
+    json.dump(new_states[k], open(f'{blockstates}/{k}', 'w'), indent=2)

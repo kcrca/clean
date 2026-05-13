@@ -23,7 +23,7 @@ avatar_dir = os.path.join(villager_dir)
 shutil.rmtree(avatar_dir, ignore_errors=True)
 os.makedirs(avatar_dir)
 
-for filename in glob.glob('%s/*' % avatar_dir):
+for filename in glob.glob(f'{avatar_dir}/*'):
     os.unlink(filename)
 
 people_config = config.items('people')
@@ -81,7 +81,7 @@ def build_avatars():
         if skin in skin_imgs:
             skin_img = skin_imgs[skin]
         else:
-            skin_path = 'parts/%s.png' % skin
+            skin_path = f'parts/{skin}.png'
             skin_img = skin_imgs[skin] = Image.open(skin_path).convert('RGBA')
 
         hair_for_skin = hair_descs.split()
@@ -91,11 +91,11 @@ def build_avatars():
         for style in styles:
             for hair in hairs:
                 if style == 'shaved':
-                    genotype = '%s_%s' % (skin, style)
-                    hair_path = 'parts/hair_styles/hair_%s.png' % style
+                    genotype = f'{skin}_{style}'
+                    hair_path = f'parts/hair_styles/hair_{style}.png'
                 else:
-                    genotype = '%s_%s_%s' % (skin, hair, style)
-                    hair_path = 'parts/hair_styles/hair_%s_%s.png' % (style, hair)
+                    genotype = f'{skin}_{hair}_{style}'
+                    hair_path = f'parts/hair_styles/hair_{style}_{hair}.png'
 
                 genotype_percent = skins[skin] * styles[style] * hairs[hair]
                 # noinspection PyTypeChecker
@@ -111,7 +111,7 @@ def build_avatars():
                 eyebrow_handling(hair, hair_img, img, villager_img)
                 img = Image.alpha_composite(img, hair_img)
 
-                avatar_path = '%s/villager%d.png' % (avatar_dir, avatar_num)
+                avatar_path = f'{avatar_dir}/villager{avatar_num:d}.png'
                 img.save(avatar_path, optimize=True)
                 avatar_num += 1
 
@@ -142,7 +142,7 @@ skins = odds_for(k for k, _ in people_config)
 
 avatars = build_avatars()
 
-prop_path = '%s/villager.properties' % avatar_dir
+prop_path = f'{avatar_dir}/villager.properties'
 props = open(prop_path, 'w')
 
 t = 0.0
@@ -154,25 +154,25 @@ for i in range(0, len(avatars)):
         odds = avatars[i][1] * 100
         t += odds
         weight = odds * 100_000
-        weights.append("%d" % round(weight))
+        weights.append(f'{round(weight):d}')
         genotype = avatars[i][0]
-        props.write('# %2d: %6.7f %s\n' % (i, odds, genotype))
+        props.write(f'# {i:2d}: {odds:6.7f} {genotype}\n')
         if genotype.endswith('_dyed_default'):
-            unemployed_textures.append("%d" % i)
-            unemployed_weights.append("%d" % weight)
+            unemployed_textures.append(f'{i:d}')
+            unemployed_weights.append(f'{weight:f}')
     else:
         assert i in (0, 1)
 
-props.write('#     %6.3f\n' % t)
+props.write(f'#     {t:6.3f}\n')
 props.write('professions.1=none\n')
-props.write('textures.1=1,%s\n' % ','.join(unemployed_textures))
-props.write('weights.1=1,%s\n' % ','.join(unemployed_weights))
-props.write('textures.2=1-%d\n' % (len(avatars) - 1))
-props.write('weights.2=1,%s\n' % ','.join(weights))
+props.write(f'textures.1=1,{','.join(unemployed_textures)}\n')
+props.write(f'weights.1=1,{','.join(unemployed_weights)}\n')
+props.write(f'textures.2=1-{len(avatars) - 1:d}\n')
+props.write(f'weights.2=1,{','.join(weights)}\n')
 props.close()
 
 profession_images = {}
-shutil.copytree('parts/profession', '%s/profession' % avatar_dir)
+shutil.copytree('parts/profession', f'{avatar_dir}/profession')
 for file in sorted(glob.glob('parts/profession/*.png')):
     profession = os.path.basename(file)[:-5]
     if profession in profession_images:
@@ -182,7 +182,7 @@ for file in sorted(glob.glob('parts/profession/*.png')):
 
 for profession in profession_images:
     files = profession_images[profession]
-    with open('%s/profession/%s.properties' % (avatar_dir, profession), 'w') as props:
-        props.write('professions.1=%s\n' % profession)
-        props.write('textures.1=1-%d\n' % (len(files) + 1))
-        props.write('weights.1=0,%s\n' % ','.join((["100"] * len(files))))
+    with open(f'{avatar_dir}/profession/{profession}.properties', 'w') as props:
+        props.write(f'professions.1={profession}\n')
+        props.write(f'textures.1=1-{len(files) + 1:d}\n')
+        props.write(f'weights.1=0,{','.join((['100'] * len(files)))}\n')

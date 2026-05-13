@@ -86,7 +86,7 @@ def call_out(dst_dir, full):
     core_dir = Path(clip.directory('core'))
     with open(core_dir / 'pack.mcmeta') as fp:
         mcmeta = json.load(fp)
-    most = "remaining" if full else "most"
+    most = 'remaining' if full else 'most'
     desc = f'Call out {most} textures not in any pack (except fonts) by making them bright green.'
     mcmeta['pack']['description'] = desc
     with open(dst_dir / 'pack.mcmeta', 'w') as fp:
@@ -95,4 +95,4 @@ def call_out(dst_dir, full):
 
 
 call_out(dst_dir, False)
-call_out(Path(str(dst_dir) + "_all"), True)
+call_out(Path(f'{dst_dir}_all'), True)

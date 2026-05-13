@@ -33,7 +33,7 @@ for f in glob.glob(clip.directory('models', 'block/**/.json')):
                 if v in known:
                     translucent = known[v]
                 else:
-                    img = Image.open(f'{images}/{v.replace("minecraft:", "")}.png')
+                    img = Image.open(f'{images}/{v.replace('minecraft:', '')}.png')
                     known[v] = translucent = clip.has_transparency(img)
                 if translucent:
                     textures[k] = {'force_transparent': True, 'sprite': v}

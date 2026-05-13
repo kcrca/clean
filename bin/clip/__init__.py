@@ -47,8 +47,8 @@ def directory(name, *args, **kwargs) -> str:
         'textures': 'core/assets/minecraft/textures',
         'blockstates': 'core/assets/minecraft/blockstates',
         'items': 'core/assets/minecraft/items',
-        'models': "core/assets/minecraft/models",
-        'minecraft': "core/assets/minecraft",
+        'models': 'core/assets/minecraft/models',
+        'minecraft': 'core/assets/minecraft',
         'site': 'site',
         'core': 'core',
     }
@@ -74,7 +74,7 @@ def clear_out_tree(dir_name):
 
 
 def pretty(value):
-    return "{:,}".format(value)
+    return '{:,}'.format(value)
 
 
 def hex_to_rgba(desc, alpha=255):
@@ -150,14 +150,14 @@ def alpha_composite(output, image, pos=(0, 0), rotation=0):
         output.paste(image, pos, mask)
 
 def has_transparency(img):
-    if img.info.get("transparency", None) is not None:
+    if img.info.get('transparency', None) is not None:
         return True
-    if img.mode == "P":
-        transparent = img.info.get("transparency", -1)
+    if img.mode == 'P':
+        transparent = img.info.get('transparency', -1)
         for _, index in img.getcolors():
             if index == transparent:
                 return True
-    elif img.mode[-1] == "A":
+    elif img.mode[-1] == 'A':
         return True
 
     return False

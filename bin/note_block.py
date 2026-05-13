@@ -10,7 +10,7 @@ from clip import *
 # the sharps just look too big.
 
 def colorize(img, color_hex):
-    color = ImageColor.getcolor("#%06xff" % color_hex, 'RGBA')
+    color = ImageColor.getcolor(f'#{color_hex:06x}ff', 'RGBA')
     new_img = img.copy()
     pixels = new_img.load()
     for x in range(0, img.size[0]):
@@ -90,7 +90,7 @@ for i in range(0, 25):
     else:
         was_flat = False
 
-    num = '%02d' % i
+    num = f'{i:02d}'
     img_path = f'{names_dst_path}_{num}.png'
     img.convert('RGB').save(img_path, optimize=True)
     img_on.convert('RGB').save(img_path.replace('.png', '_on.png'), optimize=True)

@@ -72,7 +72,7 @@ for tree in ('oak', 'birch', 'jungle', 'big_oak', 'acacia'):
         adjusted_frames.insert(len(adjusted_frames) - 1, {'index': len(timings) - 1, 'time': adjust_end})
     animation['frames'] = adjusted_frames
     for season in timings:
-        season_img = Image.open('%s/leaves_%s.png' % (season, tree))
+        season_img = Image.open(f'{season}/leaves_{tree}.png')
         if not leaves_img:
             w, h = season_img.size
             leaves_img = Image.new(season_img.mode, (w, 4 * h), transparent)
@@ -84,10 +84,10 @@ for tree in ('oak', 'birch', 'jungle', 'big_oak', 'acacia'):
             leaves_img.paste(season_img, (0, frame_pos))
         index += 1
     animation['interpolate'] = True
-    with open('leaves_%s.png.mcmeta' % tree, 'w') as f:
+    with open(f'leaves_{tree}.png.mcmeta', 'w') as f:
         json.dump(wrapper, f, indent=2)
         animation['interpolate'] = False
-    with open('branches_%s.png.mcmeta' % tree, 'w') as f:
+    with open(f'branches_{tree}.png.mcmeta', 'w') as f:
         json.dump(wrapper, f, indent=2)
-    leaves_img.save('leaves_%s.png' % tree, optimize=True)
-    branches_img.save('branches_%s.png' % tree, optimize=True)
+    leaves_img.save(f'leaves_{tree}.png', optimize=True)
+    branches_img.save(f'branches_{tree}.png', optimize=True)

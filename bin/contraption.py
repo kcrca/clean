@@ -104,7 +104,7 @@ def main():
     os.makedirs(models_dir)
 
     pack = json.load(open('core/pack.mcmeta'))
-    pack['pack']['description'] = "Clean pack to make redstone mechanisms clearer."
+    pack['pack']['description'] = 'Clean pack to make redstone mechanisms clearer.'
     clip.dump('contraption/pack.mcmeta', pack)
 
     # Read in all the models
@@ -122,7 +122,7 @@ def main():
     assert n == 'shrink'
 
     shrink = shrink_pats.split()
-    shrink_pat = f'({"|".join(shrink)})'
+    shrink_pat = f'({'|'.join(shrink)})'
     shrink_re = re.compile(shrink_pat)
 
     # This isn't normally a block, but we want to adjust its size, so we force it in.

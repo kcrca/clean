@@ -6,7 +6,7 @@ from PIL import Image, ImageColor, ImageDraw
 
 if len(sys.argv) == 1:
     sys.exit(0)
-print('argv: %s' % sys.argv)
+print(f'argv: {sys.argv}')
 biomes = {}
 all = []
 for f in sys.argv[1:]:
@@ -39,7 +39,7 @@ for b in order:
         c = b[1]
         colors.append(b[1])
         n = 1
-    print(c, b[0], "(%d)" % n)
+    print(c, b[0], f'({n:d})')
     prev = b[1]
 
 color_img = Image.new('RGB', (16 * len(colors), 16))

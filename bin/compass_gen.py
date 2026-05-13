@@ -79,7 +79,7 @@ for i in range(0, TICKS):
 
 
     def arrow_image(up_color, down_color):
-        img = Image.new('RGBA', (IMG_SIZE, IMG_SIZE), ImageColor.getrgb("#0000"))
+        img = Image.new('RGBA', (IMG_SIZE, IMG_SIZE), ImageColor.getrgb('#0000'))
         draw = ImageDraw.Draw(img)
         # noinspection PyTypeChecker
         draw.polygon(list(map(tuple, (l, r, n))), fill=(ImageColor.getrgb(up_color)))
@@ -88,17 +88,17 @@ for i in range(0, TICKS):
         return img
 
 
-    arrow_image("#f00f", "#000f").save('%s/compass_%0*d.png' % (img_dir, TICK_DIGIT_COUNT, i))
-    arrow_image("#009295", "#29dfeb").save('%s/recovery_compass_%0*d.png' % (img_dir, TICK_DIGIT_COUNT, i))
+    arrow_image('#f00f', '#000f').save('%s/compass_%0*d.png' % (img_dir, TICK_DIGIT_COUNT, i))
+    arrow_image('#009295', '#29dfeb').save('%s/recovery_compass_%0*d.png' % (img_dir, TICK_DIGIT_COUNT, i))
     with open(f'{model_dir}/compass_{i:02d}.json', 'w') as fp:
         json.dump({'parent': 'item/flat_clock', 'textures': {'layer0': f'item/compass_{i:02d}'}}, fp, indent=2)
 
     day_frac = i * TICK_FRACTION
 
     display = {
-        "rotation": [-20, -35, 0],
-        "translation": FP_TRANSLATION,
-        "scale": FP_SCALE
+        'rotation': [-20, -35, 0],
+        'translation': FP_TRANSLATION,
+        'scale': FP_SCALE
     }
 
 

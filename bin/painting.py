@@ -35,7 +35,7 @@ art_imgs = []
 for img_file in images:
     art_img = Image.open(img_file)
     w, h = art_img.size
-    if os.path.exists(img_file + ".mcmeta"):
+    if os.path.exists(img_file + '.mcmeta'):
         # Assuming all animated images are square
         h = w
         art_img = art_img.crop((0, 0, w, w))
@@ -62,10 +62,10 @@ for i in range(0, len(art_imgs)):
 item_img.save(texture, optimize=True)
 
 anim_json = {
-    "animation": {
-        "frametime": 15,
-        "interpolate": True,
-        "frames": frames,
+    'animation': {
+        'frametime': 15,
+        'interpolate': True,
+        'frames': frames,
     }
 }
 with open(animation, 'w') as f:
