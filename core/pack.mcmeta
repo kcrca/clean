@@ -1,7 +1,7 @@
 {
   "pack": {
     "description": "Clean's internal core source",
-    "min_format": [87, 0],
-    "max_format": [87, 0]
+    "min_format": [88, 0],
+    "max_format": [88, 0]
   }
 }
