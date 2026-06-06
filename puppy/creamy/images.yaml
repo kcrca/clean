@@ -4,16 +4,13 @@ images:
 - name: Overview
   description: A general overview of the pack
   file: overview
-  embed: true
   featured: true
 - name: Mobs
   description: Here's an overview of the mobs!
   file: mobs
-  embed: true
 - name: Villagers
   description: The villagers are gender neutral and multi-racial
   file: villagers
-  embed: true
 - name: Hoppers
   description: Hoppers show their output direction
   file: hoppers

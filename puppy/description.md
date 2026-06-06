@@ -8,6 +8,8 @@ less visual noise, there are fewer things calling for your attention. When diffe
 need is easily in your grasp. The visual world demands less of you, and you play with less distraction and
 more confidence.
 
+{{ img('overview') }}
+
 The design guidelines are:
 
 * Cleanliness balanced with elegance.
@@ -22,6 +24,10 @@ The design guidelines are:
 The pack is quite complete, all blocks, mobs, items, GUI, paintings, effects... Almost all are 16x16, but a
 few are larger where it reduced noise a lot (such as curved rail). Some particles (such as lava sparks)
 are left untouched on purpose. (And versions going back to Minecraft 1.16 are available.)
+
+{{ img('mobs') }}
+
+{{ img('villagers') }}
 
 {{name}} is a resource pack built on making the world less noisy. The
 textures are designed to be clear and simple. It is easy to see
