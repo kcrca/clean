@@ -23,44 +23,18 @@ linked_projects:
     planetminecraft:
       slug: restworld-a-complete-resourcepack-testing-world-for-1-15-2
 
-curseforge:
-  additionalCategories:
-    animated: 0
-    dataPacks: 0
-    fontPacks: 0
-    medieval: 0
-    modSupport: 0
-    modern: true
-    photoRealistic: 0
-    traditional: 0
-    miscellaneous: true
 modrinth:
-  tags:
-    audio: 0
-    blocks: true
-    combat: 0
-    core-shaders: 0
-    cursed: 0
-    decoration: 0
-    entities: 0
-    environment: true
-    equipment: true
-    fonts: 0
-    gui: true
-    items: true
-    locale: 0
-    modded: 0
-    models: 0
-    realistic: 0
-    simplistic: true
-    themed: 0
-    tweaks: 0
-    utility: 0
-    vanilla-like: true
+  category:
+    - blocks
+    - environment
+    - equipment
+    - gui
+    - items
+    - simplistic
+    - vanilla-like
 planetminecraft:
   after_push: 'Update alt download link to https://cleanpack.art/packs/{{name}}.{{version}}.zip'
   category: Simplistic
-  credit: ''
   modifies:
     armor: true
     art: true
