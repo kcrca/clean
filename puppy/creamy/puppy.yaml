@@ -1,5 +1,5 @@
 name: Creamy
-pack: creamy
+handle: creamy
 icon: '{{top}}/creamy/pack.png'
 zip: '{{top}}/site/packs/Creamy.26.1.zip'
 pack_specific: Creamy gives you a low-noise, smooth vision of the world, with few

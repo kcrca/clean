@@ -1,5 +1,5 @@
 name: Confluent
-pack: confluent
+handle: confluent
 icon: '{{top}}/confluent/pack.png'
 zip: '{{top}}/site/packs/Confluent.26.1.zip'
 pack_specific: Confluent is the connected texture pack version of [Clean]({{projects.clean.url}})

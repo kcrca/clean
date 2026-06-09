@@ -1,5 +1,5 @@
 name: Clean
-pack: clean
+handle: clean
 icon: '{{top}}/clean/pack.png'
 zip: '{{top}}/site/packs/Clean.26.1.zip'
 pack_specific: Clean gives you a low-noise, easy to use vision of the world, with
