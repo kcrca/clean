@@ -6,10 +6,12 @@ pack_specific: Confluent is the connected texture pack version of [Clean]({{proj
 other_packs: '{{clean_desc}} and {{creamy_desc}}'
 summary: '{{pack_specific}}'
 
+curseforge:
+  id: 1536873
+  slug: confluent
 modrinth:
   id: 3KqYI1dW
   slug: confluentpack
 planetminecraft:
   id: 6919424
   slug: confluent
-summary: This is like clean, but for connected texture packs.
