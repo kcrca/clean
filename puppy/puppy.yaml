@@ -2,6 +2,7 @@ projects:
   - clean
   - creamy
   - confluent
+type: pack
 version: '26.1'
 minecraft: '26.1'
 resolution: 16
