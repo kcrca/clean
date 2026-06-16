@@ -1,7 +1,7 @@
 name: Creamy
 handle: creamy
 icon: '{{top}}/creamy/pack.png'
-zip: '{{top}}/site/packs/Creamy.26.1.zip'
+file: '{{top}}/site/packs/Creamy.26.1.zip'
 pack_specific: Creamy gives you a low-noise, smooth vision of the world, with few
   block boundaries, keeping an ultra-low-noise environment with fewer interruptions
 other_packs: '{{clean_desc}} and {{confluent_desc}}'
