@@ -2,12 +2,13 @@ projects:
   - clean
   - creamy
   - confluent
+  - call_out
 type: pack
-version: '26.1'
-minecraft: '26.1'
+minecraft: '26.2'
+version: '{{minecraft}}'
 resolution: 16
 progress: 100
-summary: "A calm, clear texture pack for Minecraft 26.1"
+summary: "A calm, clear texture pack for Minecraft {{minecraft}}"
 links:
   home: "https://cleanpack.art"
   source: "https://github.com/kcrca/clean"
@@ -34,7 +35,7 @@ modrinth:
     - simplistic
     - vanilla-like
 planetminecraft:
-  after_push: 'Update alt download link to https://cleanpack.art/packs/{{name}}.{{version}}.zip'
+  alt_download: "https://cleanpack.art/packs/{{name}}.{{version}}.zip"
   category: Simplistic
   modifies:
     armor: true
