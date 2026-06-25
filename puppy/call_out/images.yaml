@@ -1,0 +1,10 @@
+source: '{{top}}/site/'
+
+images:
+- name: Example
+  description: Crafting table texture is missing!
+  file: call_out_example
+  featured: true
+- name: Order
+  description: Proper pack order! Your pack, then "Call Out", then Default.
+  file: call_out_order

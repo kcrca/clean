@@ -1,0 +1,15 @@
+name: "Call Out"
+handle: call_out
+icon: '{{top}}/site/call_out_thumb.png'
+file: '{{top}}/site/packs/Call_out.26.2.zip'
+summary: "Call Out helps you see which textures are missing in your pack."
+
+curseforge:
+  id: 1578137
+  slug: call-out
+modrinth:
+  slug: call-out
+  id: VoIl3ML8
+planetminecraft:
+  id: 6136773
+  slug: call-out-texture-pack-support
