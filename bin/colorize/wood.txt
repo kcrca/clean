@@ -10,3 +10,4 @@ crimson log=stem
 mangrove
 bamboo
 cherry
+poplar

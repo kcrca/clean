@@ -158,6 +158,7 @@ block/warped_planks.png
 block/crimson_planks.png
 block/mangrove_planks.png
 block/cherry_planks.png
+block/poplar_planks.png
 block/jungle_shelf.png
 block/birch_shelf.png
 block/spruce_shelf.png
@@ -168,6 +169,7 @@ block/warped_shelf.png
 block/crimson_shelf.png
 block/mangrove_shelf.png
 block/cherry_shelf.png
+block/poplar_shelf.png
 block/jungle_pressure_plate.png
 block/birch_pressure_plate.png
 block/spruce_pressure_plate.png
@@ -178,16 +180,19 @@ block/warped_pressure_plate.png
 block/crimson_pressure_plate.png
 block/mangrove_pressure_plate.png
 block/cherry_pressure_plate.png
+block/poplar_pressure_plate.png
 block/spruce_log.png
 block/dark_oak_log.png
 block/pale_oak_log.png
 block/acacia_log.png
 block/cherry_log.png
+block/poplar_log.png
 block/spruce_log_top.png
 block/dark_oak_log_top.png
 block/pale_oak_log_top.png
 block/acacia_log_top.png
 block/cherry_log_top.png
+block/poplar_log_top.png
 block/jungle_sign.png
 block/birch_sign.png
 block/spruce_sign.png
@@ -199,6 +204,7 @@ block/crimson_sign.png
 block/mangrove_sign.png
 block/bamboo_sign.png
 block/cherry_sign.png
+block/poplar_sign.png
 block/jungle_hanging_sign.png
 block/birch_hanging_sign.png
 block/spruce_hanging_sign.png
@@ -210,6 +216,7 @@ block/crimson_hanging_sign.png
 block/mangrove_hanging_sign.png
 block/bamboo_hanging_sign.png
 block/cherry_hanging_sign.png
+block/poplar_hanging_sign.png
 item/jungle_sign.png
 item/birch_sign.png
 item/spruce_sign.png
@@ -221,6 +228,7 @@ item/crimson_sign.png
 item/mangrove_sign.png
 item/bamboo_sign.png
 item/cherry_sign.png
+item/poplar_sign.png
 item/jungle_hanging_sign.png
 item/birch_hanging_sign.png
 item/spruce_hanging_sign.png
@@ -232,6 +240,7 @@ item/crimson_hanging_sign.png
 item/mangrove_hanging_sign.png
 item/bamboo_hanging_sign.png
 item/cherry_hanging_sign.png
+item/poplar_hanging_sign.png
 gui/hanging_signs/jungle.png
 gui/hanging_signs/birch.png
 gui/hanging_signs/spruce.png
@@ -243,6 +252,7 @@ gui/hanging_signs/crimson.png
 gui/hanging_signs/mangrove.png
 gui/hanging_signs/bamboo.png
 gui/hanging_signs/cherry.png
+gui/hanging_signs/poplar.png
 block/stripped_jungle_log_top.png
 block/stripped_birch_log_top.png
 block/stripped_spruce_log_top.png
@@ -253,6 +263,7 @@ block/stripped_warped_stem_top.png
 block/stripped_crimson_stem_top.png
 block/stripped_mangrove_log_top.png
 block/stripped_cherry_log_top.png
+block/stripped_poplar_log_top.png
 entity/boat/jungle.png
 entity/boat/birch.png
 entity/boat/spruce.png
@@ -261,6 +272,7 @@ entity/boat/pale_oak.png
 entity/boat/acacia.png
 entity/boat/mangrove.png
 entity/boat/cherry.png
+entity/boat/poplar.png
 entity/chest_boat/jungle.png
 entity/chest_boat/birch.png
 entity/chest_boat/spruce.png
@@ -269,6 +281,7 @@ entity/chest_boat/pale_oak.png
 entity/chest_boat/acacia.png
 entity/chest_boat/mangrove.png
 entity/chest_boat/cherry.png
+entity/chest_boat/poplar.png
 block/repeating_command_block_back.png
 block/chain_command_block_back.png
 block/repeating_command_block_front.png
