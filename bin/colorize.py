@@ -283,7 +283,8 @@ def main(argv=None):
         return 2
 
     parse_colors()
-    config.read(['colorize.cfg', clip.directory('config', 'colorize.cfg')])
+    if len(config.read(['colorize.cfg', clip.directory('config', 'colorize.cfg')])) != 2:
+        raise FileNotFoundError(f'{directory}/colorize.cfg')
     try:
         camel_caps = config.getboolean('settings', 'camel_caps')
     except configparser.NoSectionError:

@@ -1,0 +1,7 @@
+{
+    "parent": "item/door",
+    "textures": {
+        "top": "block/poplar_door_top",
+        "bottom": "block/poplar_door_bottom"
+    }
+}
