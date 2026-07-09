@@ -1,0 +1,7 @@
+{
+    "parent": "item/cushion_template",
+    "textures": {
+	"top": "block/item_parts/orange_cushion_top",
+	"side": "block/item_parts/orange_cushion_side"
+    }
+}
