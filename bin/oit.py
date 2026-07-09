@@ -3,8 +3,6 @@ OIt files are usually copies of the non-oit variants, this just copies those.
 """
 from pathlib import Path
 
-import glob
-
 import clip
 
 src_blocks = Path(clip.directory('defaults', 'textures', 'block'))
