@@ -15,16 +15,16 @@ maps = {
     'buried_treasure_map': 'red_x',
     'desert_pyramid_map': 'desert_pyramid',
     'desert_village_map': 'desert_village',
-    'jungle_explorer_map': 'jungle_temple',
-    'ocean_explorer_map': 'ocean_monument',
+    'jungle_temple_map': 'jungle_temple',
+    'ocean_monument_map': 'ocean_monument',
     'plains_village_map': 'plains_village',
     'savanna_village_map': 'savanna_village',
     'snowy_village_map': 'snowy_village',
-    'swamp_explorer_map': 'swamp_hut',
+    'swamp_hut_map': 'swamp_hut',
     'taiga_village_map': 'taiga_village',
-    'trial_explorer_map': 'trial_chambers',
+    'trial_chamber_map': 'trial_chambers',
     'warm_ocean_ruins_map': 'warm_ocean_ruins',
-    'woodland_explorer_map': 'woodland_mansion',
+    'woodland_mansion_map': 'woodland_mansion',
 }
 
 decorations = Path(clip.directory('textures', 'map/decorations'))
