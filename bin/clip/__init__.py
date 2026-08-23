@@ -3,8 +3,6 @@ import math
 import os
 import shutil
 
-from PIL import Image
-
 colors = (
     'black', 'brown', 'gray', 'light_blue', 'lime', 'orange', 'purple', 'white', 'blue', 'cyan', 'green', 'light_gray',
     'magenta', 'pink', 'red', 'yellow')
@@ -121,7 +119,7 @@ def dump(path, src):
 from PIL import Image
 
 
-def alpha_composite(output, image, pos=(0, 0), rotation=0):
+def alpha_composite(output, image, pos=(0, 0), rotation=0) -> None:
     """
     Blends an image onto an output respecting alpha.
     Maintains original rotation logic while fixing transparency artifacts.
