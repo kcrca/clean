@@ -1,7 +1,7 @@
 name: "Call Out"
 handle: call_out
 icon: '{{top}}/site/call_out_thumb.png'
-file: '{{top}}/site/packs/Call_out.26.2.zip'
+file: '{{top}}/site/packs/Call_out.{{version}}.zip'
 summary: "Call Out helps you see which textures are missing in your pack."
 
 curseforge:

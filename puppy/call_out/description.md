@@ -25,5 +25,3 @@ Which —- when combined with Call Out --will call out everything except the fon
 (If the font was weird it would just make the GUI too hard to read.)
 
 I hope this helps you be as complete as you want to be!
-
-(Current version is 1.20.5+x, the "+x" meaning that it includes the 1.21 experimental features released with 1.20.5)
