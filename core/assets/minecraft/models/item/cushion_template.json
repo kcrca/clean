@@ -9,14 +9,17 @@
 	    "to": [ 16, 16, 16 ],
 	    "faces": {
 		"north": {"texture": "#side" },
-		"east": {"texture": "#side" }
+		"south": {"texture": "#side" },
+		"east": {"texture": "#side" },
+		"west": {"texture": "#side" }
 	    }
 	},
 	{
 	    "from": [ 0, 0, 0 ],
 	    "to": [ 16, 4, 16 ],
 	    "faces": {
-		"up":	{ "texture": "#top" }
+		"up":	{ "texture": "#top" },
+		"down":	{ "texture": "#top" }
 	    }
 	}
     ]
