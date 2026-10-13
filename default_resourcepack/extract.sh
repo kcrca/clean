@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/zsh
 set -x
 
-places=(/Applications/MultiMC.app/Data/libraries/com/mojang/minecraft)
+places=(~/Library/Application\ Support/PrismLauncher/libraries/com/mojang/minecraft)
 cd ~/clean/default_resourcepack
 
 for f in $places; do
@@ -11,8 +11,6 @@ for f in $places; do
 	rm -rf [a-df-z]*
 	unzip -qq "$loc" -x '*.class' META-INF/'*'
 	rm -f pack.*
-	to_rm=`cat .gitignore`
-	#rm -rf $to_rm
 	find */ -type f -print0 | xargs -0 chmod -w
 	git add .
     else
