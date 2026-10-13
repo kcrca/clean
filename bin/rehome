@@ -5,6 +5,7 @@ cd ~/clean
 
 src=$PWD
 dst=~/MultiMC/instances/$1/.minecraft
+[[ -d $dst ]] || dst=~/MultiMC/instances/$1/minecraft
 [[ -d $dst ]] || exec file $dst
 
 if [[ -d home/saves ]]; then
