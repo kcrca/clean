@@ -1,2 +1,3 @@
 pointed_dripstone
 sulfur_spike
+icicle
