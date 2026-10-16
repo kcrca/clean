@@ -770,5 +770,9 @@ block/sulfur_spike_up_tip_merge.png
 block/icicle_up_tip_merge.png
 item/sulfur_spike.png
 item/icicle.png
+block/brittle_ice_0.png
+block/brittle_ice_1.png
+block/brittle_ice_2.png
+block/brittle_ice_3.png
 
 (The files are in git to help the script know which files should exist)
